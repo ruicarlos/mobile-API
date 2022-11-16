@@ -1,0 +1,19 @@
+package br.com.focusInformatica.anotacoes;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+
+
+import java.util.List;
+
+@Repository
+public interface View_estoqueRepository extends JpaRepository<View_estoque, Long> {
+           
+  //  List<View_estoque> findAllByCodigoean(String codigoean);
+
+	@Query(value = "select * from view_estoque where codigoean like %?1% ", nativeQuery= true)
+	View_estoque selecionarporean(String codigoean);
+
+   
+}

@@ -1,0 +1,80 @@
+package br.com.focusInformatica.anotacoes;
+
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+	@Entity
+	public class View_estoque implements Serializable {
+
+		private static final long serialVersionUID =1L;
+		
+		@Id
+		private long Es_codigo;
+		
+		private String Codigoexportacao;
+		
+		private String Es_descricao;
+		
+        private String Es_marca;
+        
+        private String Es_unidade;
+
+        private String Codigoean; 
+		
+
+		public long getEs_codigo() {
+			return Es_codigo;
+		}
+
+		public void setEs_codigo(long Es_codigo) {
+			this.Es_codigo = Es_codigo;
+		}
+
+		public String getCodigoexportacao() {
+			return Codigoexportacao;
+		}
+
+		public void setCodigoexportacao(String Codigoexportacao) {
+			this.Codigoexportacao = Codigoexportacao;
+		}
+
+		public String getEs_descricao() {
+			return Es_descricao;
+		}
+
+		public void setEs_descricao(String Es_descricao) {
+			this.Es_descricao = Es_descricao;
+		}
+
+        
+		public String getEs_marca() {
+			return Es_marca;
+		}
+
+		public void setEs_marca(String Es_marca) {
+			this.Es_marca = Es_marca;
+		}
+
+        
+		public String getEs_unidade() {
+			return Es_unidade;
+		}
+
+		public void setEs_unidade(String Es_unidade) {
+			this.Es_unidade = Es_unidade;
+		}
+
+
+		public String getCodigoean() {
+			return Codigoean;
+		}
+
+		public void setCodigoean(String Codigoean) {
+			this.Codigoean = Codigoean;
+		}
+		
+		
+	
+	
+}

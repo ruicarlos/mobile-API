@@ -1,0 +1,160 @@
+
+	/*
+	@GetMapping("/consultaean")
+	public List<Produto> listaProdutos(){
+		return produtoRepository.findAll();
+	}
+	
+	// Seções Gerais
+	@GetMapping("/secoes")
+	public List<Secoes> listasecoes(){
+		return SecRepository.findAll();
+	}
+	
+	
+	// Todos os produtos por seção
+	@GetMapping("/produtosporsecao/{codsecao}")
+	public List<Produto> findAllBycodsecao(@PathVariable int codsecao){
+		return produtoRepository.findAllBycodsecao(codsecao);
+	}
+	
+	// Aqui as que serão utilizadas
+	
+	//29279680000106
+	@GetMapping("/secoes/porchave/{chave}")
+	public List<Secoes> findAllBychave(@PathVariable String chave){
+		return SecRepository.findAllBychave(chave);
+	}
+
+	
+	@GetMapping("/taxas/porchave/{chave}")
+	public List<Taxaporkm> findAllBychave2(@PathVariable String chave){
+		return TaxRepository.findAllBychave(chave);
+	}
+	
+	// Um Produto Especifico por codbarras e chave
+	@GetMapping("/produtos/porcodbarraschave/{codbarra}/{chave}")
+	public Produto personalizado(@PathVariable("codbarra") String codbarra, @PathVariable("chave") String chave){
+		return  produtoRepository.findByCodbarraAndChave(codbarra, chave);
+	}
+	
+	// Um Produto Especifico por codbarras
+	@GetMapping("/produtos/porcodbarraslista/{codbarra}")
+	public List<Produto> personalizado2(@PathVariable("codbarra") String codbarra){
+		return  produtoRepository.findByCodbarra(codbarra);
+	}
+ 
+	// Um Produto em Destaque e chave
+	@GetMapping("/produtos/emdestaques/{destaque}/{chave}")
+	public List<Produto> emDestaques(@PathVariable("destaque") String destaque, @PathVariable("chave") String chave){
+		return  produtoRepository.findByDestaqueAndChave(destaque, chave);
+	}
+	
+	
+	// Produtos por seção e chave
+	@GetMapping("/produtos/porsecaoechave/{codsecao}/{chave}")
+	public List<Produto> ProdutosPorSecaoeChave(@PathVariable("codsecao") int codsecao, @PathVariable("chave") String chave){
+	//	return produtoRepository.findAllByCodsecaoAndChave(codsecao, chave);
+	return produtoRepository.findAllByCodsecaoAndChaveOrderByDescricaoAsc(codsecao, chave);
+   }
+
+	
+	@PostMapping("/pedido")
+	public Pedidoscestapp salvarpedido(@RequestBody Pedidoscestapp pedido) {
+		return pedidoRepository.save(pedido);
+	}
+	
+	@GetMapping("/produtos/pordescricao/{descricao}/{chave}")
+	public List<Produto> findByDescricaoProduto(@PathVariable("descricao") String descricao, @PathVariable("chave") String chave){
+		return  produtoRepository.findByDescricaoAndChave(descricao, chave);
+	}
+
+	// Para realizar o Login
+	@GetMapping("/proprio/porsenha/{prpcgc}/{senha}")
+	public Proprio dadosdoEstabelecimento(@PathVariable("prpcgc") String prpcgc, @PathVariable("senha") String senha){
+		return  selfRepository.findByPrpcgcAndSenha(prpcgc, senha);
+	}
+	
+
+	@GetMapping("/pedidos/porchave/{chave}/{status}")
+	public List<Pedidoscestapp> findByChaveeStatus(@PathVariable("chave") String chave, @PathVariable("status") String status){
+		return  pedidoRepository.findByChaveAndStatus(chave,status);
+	}
+	
+	@GetMapping("/pedidos/detalhado/{chave}/{status}/{telefone}")
+	public List<Pedidoscestapp> findByDetalhedoPedido(@PathVariable("chave") String chave, @PathVariable("status") String status, @PathVariable("telefone") String telefone){
+		return  pedidoRepository.findByChaveAndStatusAndTelefone(chave,status,telefone);
+	}
+	
+	// novas implementações para a versão 2.0 do Gestor
+
+	//Alterar Pedido
+	@PutMapping("/modificarPedido")
+    public Pedidoscestapp alterarStatus(@RequestBody Pedidoscestapp pedidoamodificar){
+		return pedidoRepository.save(pedidoamodificar); 
+	}	
+
+	//Alterar lista Pedido
+	@PutMapping("/modificarListaPedidos")
+    public List<Pedidoscestapp> alterarStatusLista(@RequestBody List<Pedidoscestapp> pedidoamodificar){
+		return pedidoRepository.saveAll(pedidoamodificar); 
+	}
+
+	@PostMapping("/foto")
+	public Fotosenviadas salvarfoto(@RequestBody Fotosenviadas imagem) {
+		return fotosRepository.save(imagem);
+	}
+
+
+	// Funções novas do Cestappcashback
+    
+
+	@GetMapping("/cashbach/todosporcpf/{cpf}")
+	public List<Cestappcashback> findBytodosporcpf(@PathVariable("cpf") String cpf){
+		return  cashRepository.findAllBycpf(cpf);
+	}
+
+	@GetMapping("/cashback/cpfchavestatus/{cpf}/{chave}/{status}")
+	public List<Cestappcashback> findBycpfchavestatus( @PathVariable("cpf") String cpf, @PathVariable("chave") String chave, @PathVariable("status") String status){
+		return  cashRepository.findAllByCpfAndChaveAndStatusOrderByIdxAsc(cpf, chave,status);
+	}
+
+	@GetMapping("/cashback/cpfchavestatus/{cpf}/{status}")
+	public List<Cestappcashback> findBycpfstatus(@PathVariable("cpf") String cpf, @PathVariable("status") String status){
+		return  cashRepository.findAllByCpfAndStatusOrderByIdxAsc(cpf,status);
+	}
+	
+	@GetMapping("/cashback/pontostotais/{cpf}/{status}")
+	public double findBysomacpfstatus(@PathVariable("cpf") String cpf, @PathVariable("status") String status){
+		return  cashRepository.somar(cpf,status);
+	}
+
+
+	@GetMapping("/chamados/detalhe/{status}/{chave}")
+	public List<Chamados> chamadoporstatusechave(@PathVariable("status") String status, @PathVariable("chave") String chave){
+		return  chamdosRepository.findAllByStatusAndChave(status,chave);
+	}
+	
+	@PostMapping("/chamado")
+	public Chamados salvarChamado(@RequestBody Chamados chamadoCliente) {
+		return chamdosRepository.save(chamadoCliente);
+	}
+
+	@GetMapping("/pedidos/porclientes/{cpf}/{telefone}/{ultstatus}/{chave}")
+	public List<Informacoesdopedido> pedidosporcliente(@PathVariable("cpf") String cpf,@PathVariable("telefone") String telefone, @PathVariable("ultstatus") String ultstatus, @PathVariable("chave") String chave){
+		return  inforRepository.findByCpfAndTelefoneAndUltstatusAndChaveestabelecimento(cpf, telefone, ultstatus, chave);
+	}
+
+	@PostMapping("/inforpedidos")
+	public Informacoesdopedido salvarinformacoespdido(@RequestBody Informacoesdopedido infors) {
+		return inforRepository.save(infors);
+	}
+
+
+	// Todas as Fotos
+	@GetMapping("/fotos/todas/")
+	public List<Imgcheck> todosProdutos(){
+		return imgprodutosRepository.listagemdefotos();
+	}
+	
+*/	

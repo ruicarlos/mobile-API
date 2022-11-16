@@ -1,0 +1,33 @@
+package br.com.focusInformatica.mobile;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+	@Entity
+	public class Usuarios implements Serializable {
+
+		private static final long serialVersionUID =1L;
+		
+		@Id
+		private long Codigousuario;
+		
+		private String Nomeusuario;
+
+		public long Codigousuario() {
+			return Codigousuario;
+		}
+
+		public void setCodigousuario(long Codigousuario) {
+			this.Codigousuario = Codigousuario;
+		}
+
+		public String getNomeusuario() {
+			return Nomeusuario;
+		}
+
+		public void setNomeusuario(String Nomeusuario) {
+			this.Nomeusuario = Nomeusuario;
+		}
+	
+	
+}
